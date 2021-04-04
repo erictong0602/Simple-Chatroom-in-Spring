@@ -1,18 +1,16 @@
 package com.user.api.userAPi.controller;
 
+import com.user.api.userAPi.model.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.user.api.userAPi.repository.UserRepository;
-import com.user.api.userAPi.model.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-
-@RestController
-@RequestMapping(path="/user-api")
+@Controller
+@RequestMapping(path="/user")
 public class UserController {
     // inject via application.properties
 
@@ -22,20 +20,20 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping(path = "/message")
-    public String welcome(Map<String, Object> model) {
-        model.put("message", this.message);
-        return "welcome";
+    @GetMapping(path = "/createUser")
+    public String user(@RequestParam(value= "name", defaultValue = "Default User", required = true) String name, Model model){
+        model.addAttribute("name",name);
+        return "createuser";
+    }
+
+    @PostMapping(path="/createUser")
+    public @ResponseBody String addUser(@RequestBody User user_Name){
+        userRepository.save(user_Name);
+        return "saved";
     }
 
     @GetMapping(path="/")
     public @ResponseBody String sayHello(){
         return "Welcome to pages";
-    }
-
-    @PostMapping(path="/addUser")
-    public @ResponseBody String addUser(@RequestBody UserForm user){
-        userRepository.save(user);
-        return "saved";
     }
 }

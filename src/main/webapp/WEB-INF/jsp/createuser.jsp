@@ -4,7 +4,7 @@
 <%--<%@ page language="java" contentType="text/html"@%>--%>
 <html lang="en">
 <head>
-    <title>Main pages</title>
+    <title>CreateROOM</title>
     <!-- Access the bootstrap Css like this,
         Spring boot will handle the resource mapping automcatically -->
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -35,14 +35,13 @@
 <div class="container">
 
     <div class="starter-template">
-        <h1>BOOTWEBCHAT</h1>
-        <h2>Message: This is the main pages/,called from : ${name}</h2>
+        <h1>CreateRoom</h1>
+        <h2>Message: This is the CreateRoom pages, called from ${name} </h2>
     </div>
-    <form action="/room/createroom" method="GET">
-        <input type="submit" value="CreateRoom">
-    </form>    <form action="/user/createuser" method="GET">
-        <input type="submit" value="CreateUser">
-    </form>
+    <form action="/room/createUser" method="POST">
+        <input type="text" id="user_name" value="User Name"></form>
+    <input type="submit" value="CreateUser">
+    </form>;
 </div>
 
 <script type="text/javascript" src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
