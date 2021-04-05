@@ -8,12 +8,14 @@
     <!-- Access the bootstrap Css like this,
         Spring boot will handle the resource mapping automcatically -->
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <spring:url value="../css/welcome.css" var="springCss" />
-    <link href="${springCss}" rel="stylesheet" />
+<%--    <spring:url value="../css/welcome.css" var="springCss" />--%>
+<%--    <link href="${springCss}" rel="stylesheet" />--%>
 
-    <c:url value="../css/welcome.css" var="jstlCss" />
-    <link href="${jstlCss}" rel="stylesheet" />
+<%--    <c:url value="../css/welcome.css" var="jstlCss" />--%>
+<%--    <link href="${jstlCss}" rel="stylesheet" />--%>
 
 </head>
 <body>
@@ -38,9 +40,9 @@
         <h1>BOOTWEBCHAT</h1>
         <h2>Message: This is the main pages/,called from : ${name}</h2>
     </div>
-    <form action="/room/createroom" method="GET">
+    <form action="/room/createRoom" method="GET">
         <input type="submit" value="CreateRoom">
-    </form>    <form action="/user/createuser" method="GET">
+    </form>    <form action="/user/addUser" method="GET">
         <input type="submit" value="CreateUser">
     </form>
 </div>

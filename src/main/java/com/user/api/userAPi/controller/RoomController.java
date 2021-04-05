@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path="/room")
 public class RoomController {
 
-    @Value("${welcome.message:test}")
-    private String message = "Hello World";
+//    @Value("${welcome.message:test}")
+//    private String message = "Hello World";
 
     @Autowired
     RoomRepository roomRepository;
 
-    @GetMapping(path="/createroom")
+    @GetMapping(path="/createRoom")
     public String room(@RequestParam(value= "name", defaultValue = "Default User", required = true) String name, Model model){
         model.addAttribute("name",name);
         return "createroom";

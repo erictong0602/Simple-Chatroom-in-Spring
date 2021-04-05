@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class JspController {
-    @GetMapping({"/", "/banana"})
+    @GetMapping(path="/")
     public String hello(@RequestParam(value= "name", defaultValue = "Default User", required = true) String name, Model model) {
         model.addAttribute("name", name);
         return "welcome";

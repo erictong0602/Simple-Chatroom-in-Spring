@@ -4,16 +4,41 @@
 <%--<%@ page language="java" contentType="text/html"@%>--%>
 <html lang="en">
 <head>
-    <title>CreateROOM</title>
-    <!-- Access the bootstrap Css like this,
-        Spring boot will handle the resource mapping automcatically -->
-    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <title>CreateUser</title>
 
-    <spring:url value="../css/welcome.css" var="springCss" />
-    <link href="${springCss}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <c:url value="../css/welcome.css" var="jstlCss" />
-    <link href="${jstlCss}" rel="stylesheet" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#userForm").submit(function(e) {
+
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+
+                var form = {
+                    user_Name:$("#user_name").val()
+                }
+                console.log(form);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/user/addUser",
+                    contentType: 'application/json',
+                    data: JSON.stringify(form), // serializes the form's elements.
+                    processData: false,
+                    encode: true,
+                    success: function(data)
+                    {
+                        console.log('Submission was successful.');
+                        alert(data); // show response from the php script.
+                    },
+                    error: function (data) {
+                        console.log('An error occurred.');
+                        console.log(data);
+                    },
+                });
+            });
+        });
+    </script>
 
 </head>
 <body>
@@ -36,16 +61,13 @@
 
     <div class="starter-template">
         <h1>CreateRoom</h1>
-        <h2>Message: This is the CreateRoom pages, called from ${name} </h2>
+        <h2>Message: This is the CreateUser pages, called from ${name} </h2>
     </div>
-    <form action="/room/createUser" method="POST">
-        <input type="text" id="user_name" value="User Name"></form>
-    <input type="submit" value="CreateUser">
-    </form>;
+    <form id="userForm" class="form-group">
+        <input class="form-control" name="user_name" type="text" id="user_name" value="User Name"></form>
+        <button type="submit">AddUser</button>
+    </form>
 </div>
-
-<script type="text/javascript" src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </body>
 
 </html>

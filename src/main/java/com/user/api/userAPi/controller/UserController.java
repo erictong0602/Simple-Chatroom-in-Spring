@@ -12,28 +12,24 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping(path="/user")
 public class UserController {
-    // inject via application.properties
-
-    @Value("${welcome.message:test}")
-    private String message = "Hello World";
 
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping(path = "/createUser")
+    @GetMapping(path = "/addUser")
     public String user(@RequestParam(value= "name", defaultValue = "Default User", required = true) String name, Model model){
         model.addAttribute("name",name);
         return "createuser";
     }
 
-    @PostMapping(path="/createUser")
+    @PostMapping(path="/addUser")
     public @ResponseBody String addUser(@RequestBody User user_Name){
         userRepository.save(user_Name);
         return "saved";
     }
 
-    @GetMapping(path="/")
-    public @ResponseBody String sayHello(){
-        return "Welcome to pages";
-    }
+//    @GetMapping(path="/")
+//    public @ResponseBody String sayHello(){
+//        return "Welcome to pages";
+//    }
 }

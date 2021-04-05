@@ -4,17 +4,43 @@
 <%--<%@ page language="java" contentType="text/html"@%>--%>
 <html lang="en">
 <head>
-    <title>CreateROOM</title>
-    <!-- Access the bootstrap Css like this,
-        Spring boot will handle the resource mapping automcatically -->
-    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <title>CreateRoom</title>
 
-    <spring:url value="../css/welcome.css" var="springCss" />
-    <link href="${springCss}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <c:url value="../css/welcome.css" var="jstlCss" />
-    <link href="${jstlCss}" rel="stylesheet" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#roomForm").submit(function(e) {
 
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+
+                var form = {
+                    room_name:$("#room_name").val(),
+                    room_limitation:$("#room_limitation").val()
+                }
+                console.log(form);
+                console.log(typeof form);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/room/createRoom",
+                    contentType: 'application/json',
+                    data: JSON.stringify(form), // serializes the form's elements.
+                    processData: false,
+                    encode: true,
+                    success: function(data)
+                    {
+                        console.log('Submission was successful.');
+                        alert(data); // show response from the php script.
+                    },
+                    error: function (data) {
+                        console.log('An error occurred.');
+                        console.log(data);
+                    },
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -38,14 +64,13 @@
         <h1>CreateRoom</h1>
         <h2>Message: This is the CreateRoom pages, called from ${name} </h2>
     </div>
-    <form action="/room/createroom" method="POST">
-        <input type="text" id="room_name" value="Room Name"></form>
-        <input type="number" id="room_limitation" value="Room Limitation"></form>
-        <input type="submit" value="CreateRoom">
-    </form>;
+    <form id="roomForm" class="form-group">
+        <input class="form-control" name="room_name" type="text" id="room_name" value="Room Name"></form>
+        <input class="form-control" name="room_limitation" type="text" id="room_limitation" value="Room Limitation"></form>
+        <button type="submit">CreateRoom</button>
+    </form>
 </div>
 
-<script type="text/javascript" src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 
