@@ -15,6 +15,8 @@ public class User {
 
     private String user_Name;
 
+    private String user_Password;
+
     public Integer getUser_Id() {
         return user_Id;
     }
@@ -29,5 +31,13 @@ public class User {
 
     public void setUser_Name(String user_Name) {
         this.user_Name = user_Name;
+    }
+
+    public String getUser_Password() {
+        return user_Password;
+    }
+
+    public void setUser_Password(String user_Password) {
+        this.user_Password = user_Password;
     }
 }

@@ -7,15 +7,15 @@
     <title>CreateUser</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <script type="text/javascript">
+    <script>
         $(document).ready(function(){
-            $("#userForm").submit(function(e) {
+            $("#userForm").on("submit",function(e) {
 
                 e.preventDefault(); // avoid to execute the actual submit of the form.
 
                 var form = {
-                    user_Name:$("#user_name").val()
+                    user_Name: $("#user_name").val(),
+                    user_Password: $("#user_password").val()
                 }
                 console.log(form);
 
@@ -39,8 +39,8 @@
             });
         });
     </script>
-
 </head>
+
 <body>
 
 <nav class="navbar navbar-inverse">
@@ -63,11 +63,14 @@
         <h1>CreateRoom</h1>
         <h2>Message: This is the CreateUser pages, called from ${name} </h2>
     </div>
-    <form id="userForm" class="form-group">
-        <input class="form-control" name="user_name" type="text" id="user_name" value="User Name"></form>
-        <button type="submit">AddUser</button>
-    </form>
 </div>
+
+<form id="userForm">
+    <input name="user_name" type="text" id="user_name" value="User Name">
+    <input name="user_password" type="password" id="user_password" valssue="User Password">
+    <button type="submit">AddUser</button>
+</form>
+
 </body>
 
 </html>

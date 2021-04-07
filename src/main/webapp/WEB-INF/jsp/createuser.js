@@ -1,18 +1,21 @@
-$(document).ready(function(){
-    $("#roomForm").submit(function(e) {
+alert("loaded");
+
+$("#userForm").on("submit",function(e) {
 
         e.preventDefault(); // avoid to execute the actual submit of the form.
 
         var form = {
-            room_name:$("#room_name").val(),
-            room_limitation:$("#room_limitation").val()
+            user_Name: $("#user_name").val(),
+            user_Password: $("#user_password").val()
         }
+        console.log(form);
 
         $.ajax({
-            type: form.attr('method'),
-            url: form.attr('action'),
-            data: form, // serializes the form's elements.
-            dataType: 'application/json',
+            type: "POST",
+            url: "/user/addUser",
+            contentType: 'application/json',
+            data: JSON.stringify(form), // serializes the form's elements.
+            processData: false,
             encode: true,
             success: function(data)
             {
@@ -24,5 +27,4 @@ $(document).ready(function(){
                 console.log(data);
             },
         });
-    });
 });

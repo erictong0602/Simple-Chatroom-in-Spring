@@ -23,13 +23,14 @@ public class UserController {
     }
 
     @PostMapping(path="/addUser")
-    public @ResponseBody String addUser(@RequestBody User user_Name){
-        userRepository.save(user_Name);
+    public @ResponseBody String addUser(@RequestBody User user){
+        userRepository.save(user);
         return "saved";
     }
 
-//    @GetMapping(path="/")
-//    public @ResponseBody String sayHello(){
-//        return "Welcome to pages";
-//    }
+    @PostMapping(path="/Login")
+    public @ResponseBody String Login(@RequestBody User user){
+        userRepository.save(user);
+        return "saved";
+    }
 }
