@@ -42,8 +42,12 @@
     </div>
     <form action="/room/createRoom" method="GET">
         <input type="submit" value="CreateRoom">
-    </form>    <form action="/user/addUser" method="GET">
+    </form>
+    <form action="/user/addUser" method="GET">
         <input type="submit" value="CreateUser">
+    </form>
+    <form action="/user/login" method="POST">
+        <input type="submit" value="Login">
     </form>
 </div>
 
