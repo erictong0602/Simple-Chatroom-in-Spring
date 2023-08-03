@@ -1,2 +1,2 @@
-# Spring-boot-webchat
-SpringBootBased Webchat Application
+# Simple-Chatroom-in-Spring
+Simple Chatroom in Spring
